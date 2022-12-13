@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### jwt key ###
+/src/main/resources/rsa.private.key
+/src/main/resources/rsa.public.key

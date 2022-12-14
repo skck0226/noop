@@ -1,0 +1,13 @@
+version: "0.1"
+
+services:
+  noop_db:
+    container_name: noop_db
+    image: mariadb:10.7
+    restart: always
+    environment:
+      MARIADB_DATABASE: noop
+      MARIADB_USER: noop
+      MARIADB_PASSWORD: 1234
+    ports:
+      - 3306:3306

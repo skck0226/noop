@@ -2,8 +2,10 @@ package com.ajou.noop.user.dto;
 
 import com.ajou.noop.domain.User;
 import com.ajou.noop.domain.UserStatus;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
+@AllArgsConstructor
 @Data
 public class SignupDto {
     private String email;

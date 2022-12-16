@@ -1,13 +1,31 @@
-version: "0.1"
+version: "3.0"
 
 services:
-  noop_db:
-    container_name: noop_db
-    image: mariadb:10.7
-    restart: always
+  database:
+    container_name: "noop_db"
+    image: "mariadb"
     environment:
-      MARIADB_DATABASE: noop
-      MARIADB_USER: noop
-      MARIADB_PASSWORD: 1234
+      MARIADB_DATABASE: "noop"
+      MARIADB_ROOT_PASSWORD: "1234"
     ports:
-      - 3306:3306
+      - "3306:3306"
+    networks:
+      - "noop_net"
+
+  webapp:
+    container_name: "noop_server"
+    restart: "always"
+    build: "./"
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mariadb://database:3306/noop"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "1234"
+    depends_on:
+      - "database"
+    networks:
+      - "noop_net"
+
+networks:
+  noop_net:

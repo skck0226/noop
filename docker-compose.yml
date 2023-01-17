@@ -7,8 +7,6 @@ services:
     environment:
       MARIADB_DATABASE: "noop"
       MARIADB_ROOT_PASSWORD: "1234"
-#    volumes:
-#      - "noop_db"
     ports:
       - "3307:3307"
     networks:

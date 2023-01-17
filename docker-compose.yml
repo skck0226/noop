@@ -9,8 +9,7 @@ services:
       MARIADB_ROOT_PASSWORD: "1234"
     ports:
       - "3307:3307"
-    networks:
-      - "noop_net"
+    network_mode: "host"
 
   webapp:
     container_name: "noop_server"
@@ -19,13 +18,10 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:mariadb://database:3307/noop"
+      SPRING_DATASOURCE_URL: "jdbc:mariadb://localhost:3307/noop"
       SPRING_DATASOURCE_USERNAME: "root"
       SPRING_DATASOURCE_PASSWORD: "1234"
     depends_on:
       - "database"
-    networks:
-      - "noop_net"
+    network_mode: "host"
 
-networks:
-  noop_net:
